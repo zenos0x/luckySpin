@@ -8,38 +8,60 @@
 body {
   font-family: Open Sans;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(https://source.unsplash.com/hNvr4nqFIcQ/2500x1800);
+  background: #F4B106;
   background-size: cover;
 }
 
 .mainbox {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
 }
 
-.mainbox:after {
+
+.arrow {
   position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: url(./arrow-bottom.png) no-repeat;
-  background-size: 5%;
-  left: 20%;
+  right: -20%;
   top: 48%;
-  transform: rotate(90deg);
+  width: 25%;
 }
 
-.wheel_img{
+.wheel_img {
   position: absolute;
   width: 132%;
-  top: -4.7rem;
-  left: -5.1rem;
+  top: -3.7rem;
+  left: -4.1rem;
+  box-shadow: 5px 5px 30px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.logo {
+  position: absolute;
+  width: 100px;
+  right: 5%;
+  top: 2%;
+}
+
+.shopName {
+  position: absolute;
+  right: 45%;
+  top: 2%;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.para1 {
+  position: absolute;
+  display: none;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .box {
@@ -83,23 +105,23 @@ span {
   background: #F4B106;
 }
 
-.box2 .span1{
+.box2 .span1 {
   background: black;
 }
 
-.box2 .span2{
+.box2 .span2 {
   background: #F4B106;
 }
 
-.box2 .span3{
+.box2 .span3 {
   background: black;
 }
 
-.box2 .span4{
+.box2 .span4 {
   background: #F4B106;
 }
 
-.box2 .span5{
+.box2 .span5 {
   background: black;
 }
 
@@ -112,14 +134,13 @@ span {
 }
 
 .font {
-  color: white;
   font-size: 20px;
 }
 
 .box1 .span1 b {
   position: absolute;
-  top: 39%;
-  right: 60%;
+  top: 38%;
+  right: 71%;
   transform: rotate(200deg);
   text-align: center;
 }
@@ -129,20 +150,22 @@ span {
   top: 20%;
   right: 68%;
   transform: rotate(-130deg);
+  color: white;
 }
 
 .box1 .span3 b {
   position: absolute;
-  top: 20%;
+  top: 15%;
   right: 36%;
   transform: rotate(-90deg);
 }
 
 .box1 .span4 b {
   position: absolute;
-  top: 25%;
-  right: 15%;
+  top: 21%;
+  right: 21%;
   transform: rotate(-45deg);
+  color: white;
 }
 
 .box1 .span5 b {
@@ -155,9 +178,10 @@ span {
 
 .box2 .span1 b {
   position: absolute;
-  top: 34%;
-  right: 70%;
+  top: 38%;
+  right: 71%;
   transform: rotate(200deg);
+  color: white;
 }
 
 .box2 .span2 b {
@@ -171,14 +195,15 @@ span {
 .box2 .span3 b {
   position: absolute;
   top: 15%;
-  right: 40%;
+  right: 36%;
   transform: rotate(270deg);
+  color: white;
 }
 
 .box2 .span4 b {
   position: absolute;
-  top: 27%;
-  right: 20%;
+  top: 21%;
+  right: 21%;
   transform: rotate(310deg);
 }
 
@@ -188,6 +213,7 @@ span {
   right: 10%;
   transform: rotate(-20deg);
   text-align: center;
+  color: white;
 }
 
 .spin {
@@ -230,7 +256,36 @@ audio {
 
 @media (max-width: 576px) {
   .mainbox {
-    width: 100%;
-    height: 50%;
+    width: 75vw;
+    height: 75vw;
+    max-width: 450px;
+    max-height: 450px;
+  }
+
+  .font {
+    font-size: 12px;
+  }
+
+  .shopName {
+  right: 28%;
+  top: 18%;
+}
+
+.para1 {
+  display: block;
+  right: 33%;
+  top: 22%;
+}
+
+  .spin {
+    width: 65px;
+    height: 65px;
+    font-size: 20px;
+  }
+
+  .wheel_img {
+    width: 132%;
+    top: -3rem;
+    left: -3rem;
   }
 }
