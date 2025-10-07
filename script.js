@@ -1,23 +1,3 @@
-function shuffle(array) {
-  var currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-
-  return array;
-}
-
 function spin() {
   const spinButton = document.querySelector('.spin');
   spinButton.disabled = true;
@@ -26,30 +6,27 @@ function spin() {
   const box = document.getElementById("box");
   const element = document.getElementById("mainbox");
 
-  // Angles for the center of each of the 10 wheel segments.
-  // Assumes even distribution (36 degrees per segment).
-  // Item 1 (French Fries) is assumed to be centered at 18 degrees.
+  // Angles for the center of each of the 4 wheel segments (90 degrees each)
   const prize_map = {
-    "French fries": [18, 198],
-    "bao": [54, 234],
-    "milk shake": [90, 270],
-    "momos": [126, 306],
-    "wings": [162, 342],
+    "bao": 0,
+    "momos": 90,
+    "better luck next time": 180,
+    "French fries": 270
   };
 
   const prizes = Object.keys(prize_map);
   const selectedPrize = prizes[Math.floor(Math.random() * prizes.length)];
 
-  const angles = prize_map[selectedPrize];
-  const prizeAngle = angles[Math.floor(Math.random() * angles.length)];
+  const prizeAngleCenter = prize_map[selectedPrize];
+  // Add or subtract a random value between 0 and 45 degrees
+  const offset = (Math.random() * 45) * (Math.random() < 0.5 ? 1 : -1);
+  const prizeAngle = prizeAngleCenter + offset;
 
-  // The arrow is on the left side, pointing to the 180-degree mark.
+  console.log(selectedPrize, prizeAngle);
+
+  // The arrow is at the top, pointing to 0 degrees
   const arrowPosition = 0;
-  
-  // We rotate the wheel so the prizeAngle aligns with the arrowPosition.
   let finalRotation = arrowPosition - prizeAngle;
-
-  // Add full rotations for the spinning effect.
   finalRotation += 360 * (Math.floor(Math.random() * 5) + 5);
 
   box.style.setProperty("transition", "all ease 5s");
@@ -61,18 +38,18 @@ function spin() {
   }, 5000);
 
   setTimeout(function () {
-    applause.play();
+    selectedPrize === "better luck next time" ? betterLuck.play() : applause.play();
     swal(
-      "Congratulations",
-      "You Won " + selectedPrize + ".",
-      "success"
+      selectedPrize === "better luck next time" ? "Try Again" : "Congratulations",
+      selectedPrize === "better luck next time" ? "Better luck next time!" : "You Won " + selectedPrize + ".",
+      selectedPrize === "better luck next time" ? "error" : "success"
     ).then(() => {
-      // spinButton.disabled = false;
+      spinButton.disabled = false;
     });
-  }, 5500);
+  }, 6000);
 
   setTimeout(function () {
     box.style.setProperty("transition", "initial");
     box.style.transform = "rotate(90deg)";
-  }, 6000);
+  }, 6500);
 }
